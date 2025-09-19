@@ -1,5 +1,5 @@
 <script>
-import LangSwitcher from "./ui/LangSwitcher.vue";
+import LangSwitcher from "./ui/ChangLang.vue";
 
 export default {
   components: {
@@ -18,10 +18,10 @@ export default {
           <router-link to="/">Home</router-link>
         </li>
         <li>
-          <router-link to="/">Chat</router-link>
+          <router-link to="/chat">Chat</router-link>
         </li>
         <li>
-          <router-link to="/">Blog</router-link>
+          <router-link to="/blog">Blog</router-link>
         </li>
         <li>
           <LangSwitcher />
