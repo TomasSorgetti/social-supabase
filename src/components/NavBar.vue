@@ -1,3 +1,13 @@
+<script>
+import LangSwitcher from "./ui/LangSwitcher.vue";
+
+export default {
+  components: {
+    LangSwitcher,
+  },
+};
+</script>
+
 <template>
   <header>
     <nav>
@@ -12,6 +22,9 @@
         </li>
         <li>
           <router-link to="/">Blog</router-link>
+        </li>
+        <li>
+          <LangSwitcher />
         </li>
       </ul>
     </nav>

@@ -1,6 +1,15 @@
-<script setup>
+<script>
+import NavBar from "./components/NavBar.vue";
+
+export default {
+  components: {
+    NavBar,
+  },
+};
 </script>
 
 <template>
-  <h1>Hello World</h1>
+  <NavBar />
+  <h1>{{ $t("welcome") }}</h1>
+  <p>{{ $t("greeting", { name: "Usuario" }) }}</p>
 </template>

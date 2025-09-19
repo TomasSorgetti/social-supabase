@@ -1,0 +1,6 @@
+{
+  "welcome": "Bienvenido a la aplicación",
+  "greeting": "¡Hola, {name}!",
+  "language": "Idioma",
+  "switch_to": "Cambiar a {lang}"
+}
