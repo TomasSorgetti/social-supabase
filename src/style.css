@@ -15,3 +15,14 @@
 
   --color-border: #3c3c3c;
 }
+
+@layer {
+  .text-7xl {
+    @apply text-[4rem];
+  }
+}
+
+html,
+body {
+  @apply bg-background text-font-primary;
+}

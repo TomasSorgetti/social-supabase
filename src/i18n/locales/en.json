@@ -1,4 +1,12 @@
 {
+  "HomePage": {
+    "Hero": {
+      "label": "For developers, by developers",
+      "title": "Share your bugs, memes and code tips.",
+      "description": "Nerd Feed is the social network for programmers: a space to share ideas, epic bugs, and quick tips.",
+      "cta": "Take a Look"
+    }
+  },
   "welcome": "Welcome to the app",
   "greeting": "Hello, {name}!",
   "language": "Language",

@@ -1,4 +1,9 @@
+<script setup>
+import HomeHero from "../components/sections/home/HomeHero.vue";
+</script>
+
 <template>
-  <h1>{{ $t("welcome") }}</h1>
-  <p>{{ $t("greeting", { name: "Usuario" }) }}</p>
+  <main>
+    <HomeHero />
+  </main>
 </template>
