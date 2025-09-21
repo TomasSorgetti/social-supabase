@@ -5,6 +5,27 @@
       "title": "Share your bugs, memes and code tips.",
       "description": "Nerd Feed is the social network for programmers: a space to share ideas, epic bugs, and quick tips.",
       "cta": "Take a Look"
+    },
+    "About": {
+      "title": "What makes Nerd Feed unique",
+      "description": "Nerd Feed is more than just posts. It’s a simple, fast, and fun way for developers to connect, share, and build their identity.",
+      "cards": [
+        {
+          "label": "Community",
+          "title": "Connect with other developers",
+          "description": "Join a feed where programmers from all levels share insights, challenges, and wins in real time."
+        },
+        {
+          "label": "Simplicity",
+          "title": "Post in seconds",
+          "description": "Write and share your thoughts, bugs, or memes in under 280 characters. No distractions, just code talk."
+        },
+        {
+          "label": "Identity",
+          "title": "Build your dev profile",
+          "description": "Show who you are: customize your profile, share your posts, and let others follow your coding journey."
+        }
+      ]
     }
   },
   "welcome": "Welcome to the app",
