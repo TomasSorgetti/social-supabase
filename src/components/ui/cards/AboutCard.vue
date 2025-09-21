@@ -39,7 +39,7 @@ const textColor = computed(() => {
 
 <template>
   <div
-    class="relative flex flex-col justify-between w-full h-full min-h-[40rem] text-left border border-border lg:max-w-[25rem]"
+    class="relative flex flex-col justify-between w-full h-full min-h-[40rem] text-left border border-border"
   >
     <div
       class="absolute -top-[1px] -left-[1px] w-5 h-5 border-l border-t"

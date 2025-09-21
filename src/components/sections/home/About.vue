@@ -7,7 +7,7 @@ import IdentityImage from "../../../assets/images/identity.webp";
 
 <template>
   <section
-    class="container mx-auto text-center w-full h-full flex flex-col items-center space-y-6"
+    class="container mx-auto max-w-7xl text-center w-full h-full flex flex-col items-center space-y-6"
   >
     <h2 class="text-5xl font-semibold max-w-[35rem]">
       {{ $t("HomePage.About.title") }}

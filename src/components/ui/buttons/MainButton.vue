@@ -3,7 +3,7 @@
 <template>
   <router-link
     to="/chat"
-    class="relative bg-primary/20 border border-primary text-primary-bis text-lg font-semibold py-3 px-10 min-w-[18.75rem] hover:bg-primary/30 active:bg-primary/50 transition-colors duration-300 ease-in-out"
+    class="relative bg-primary/20 border border-primary text-primary-bis text-lg font-semibold py-3 px-10 min-w-[18.75rem] hover:bg-primary/30 active:bg-primary/50 transition-colors duration-300 ease-in-out flex items-center justify-center"
   >
     <slot />
     <div
