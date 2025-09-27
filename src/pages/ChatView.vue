@@ -10,9 +10,30 @@ const newMessage = ref("");
 
 async function loadMessages() {
   try {
-    const { data, error } = await supabase.from("global_chat").select();
+    const { data, error } = await supabase
+      .from("global_chat")
+      .select("*")
+      .order("created_at", { ascending: true });
+
     if (error) throw error;
     messages.value = data;
+
+    const channel = supabase
+      .channel("chat:global_chat")
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "global_chat",
+        },
+        (payload) => {
+          messages.value.push(payload.new);
+        }
+      )
+      .subscribe();
+
+    return channel;
   } catch (error) {
     console.error("Error al cargar mensajes:", error.message);
   }
@@ -32,7 +53,6 @@ async function sendMessage(event) {
     ]);
     if (error) throw error;
 
-    await loadMessages();
     newMessage.value = "";
   } catch (error) {
     console.error("Error al enviar mensaje:", error.message);
