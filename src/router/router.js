@@ -1,11 +1,8 @@
-import {
-  createRouter,
-  // createWebHashHistory
-  createWebHistory,
-} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../pages/HomeView.vue";
 import ChatView from "../pages/ChatView.vue";
 import LoginView from "../pages/auth/LoginView.vue";
+import RegisterView from "../pages/auth/RegisterView.vue";
 import ForgotPasswordView from "../pages/auth/ForgotPasswordView.vue";
 
 const routes = [
@@ -23,7 +20,7 @@ const routes = [
   },
   {
     path: "/auth/register",
-    component: LoginView,
+    component: RegisterView,
   },
   {
     path: "/auth/forgot-password",

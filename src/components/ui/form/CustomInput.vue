@@ -17,9 +17,9 @@ export default {
   emits: ["update:value"],
   data() {
     return {
+      isPasswordVisible: false,
       EyeIcon,
       EyeOffIcon,
-      isPasswordVisible: false,
     };
   },
   computed: {
@@ -47,7 +47,7 @@ export default {
 
 <template>
   <div class="w-full flex flex-col items-start gap-2">
-    <label :for="name" class="font-medium">
+    <label :for="id" class="font-medium">
       {{ label }}
     </label>
 
@@ -57,7 +57,7 @@ export default {
         class="absolute top-1/2 left-4 transform -translate-y-1/2 pointer-events-none"
         aria-hidden="true"
       >
-        <img :src="icon" :alt="`${name} icon`" />
+        <img :src="icon" :alt="`${name} icon`" class="w-5 h-5" />
       </div>
 
       <button
@@ -79,13 +79,13 @@ export default {
 
       <input
         :type="inputType"
-        :id="name"
+        :id="id"
         :name="name"
         :value="value"
         :placeholder="placeholder"
         @input="onInput"
         :aria-invalid="!!error"
-        :aria-describedby="error ? `${name}-error` : null"
+        :aria-describedby="error ? `${id}-error` : null"
         :autocomplete="
           type === 'email'
             ? 'email'
@@ -94,34 +94,17 @@ export default {
             : 'off'
         "
         class="border border-border min-h-12 py-2 px-4 w-full placeholder:text-font-secondary hover:border-font-secondary focus:border-font-secondary"
-        :class="{ 'pl-18': icon }"
+        :class="{ 'pl-12': icon }"
       />
 
       <small
         v-if="error"
-        :id="`${name}-error`"
+        :id="`${id}-error`"
         class="text-red-500 mt-1 block"
         role="alert"
       >
         {{ error }}
       </small>
-
-      <div
-        class="absolute -top-0 -left-0 w-3 h-3 border-l border-t border-white"
-        aria-hidden="true"
-      ></div>
-      <div
-        class="absolute -bottom-0 -left-0 w-3 h-3 border-l border-b border-white"
-        aria-hidden="true"
-      ></div>
-      <div
-        class="absolute -top-0 -right-0 w-3 h-3 border-r border-t border-white"
-        aria-hidden="true"
-      ></div>
-      <div
-        class="absolute -bottom-0 -right-0 w-3 h-3 border-r border-b border-white"
-        aria-hidden="true"
-      ></div>
     </div>
   </div>
 </template>

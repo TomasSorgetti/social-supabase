@@ -39,7 +39,7 @@ export default {
           <NavLink to="/chat">Chat</NavLink>
         </li>
         <li>
-          <NavLink to="/blog">Blog</NavLink>
+          <NavLink to="/">Blog</NavLink>
         </li>
         <!-- <li>
           <LangSwitcher />
