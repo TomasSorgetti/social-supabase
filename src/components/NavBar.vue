@@ -1,30 +1,53 @@
 <script>
 import LangSwitcher from "./ui/ChangLang.vue";
+import Logo from "../assets/NerdFeed.svg";
+import NavLink from "./ui/NavLink.vue";
 
 export default {
   components: {
     LangSwitcher,
+    NavLink,
+  },
+  data() {
+    return {
+      Logo,
+    };
   },
 };
 </script>
 
 <template>
-  <header>
-    <nav>
-      <router-link to="/">Logo</router-link>
+  <header
+    class="fixed top-0 left-0 w-full z-90 bg-background border-b border-border"
+  >
+    <nav
+      class="flex items-center justify-between container mx-auto px-4 lg:px-0"
+    >
+      <router-link to="/">
+        <img :src="Logo" alt="logo de nerd feed" />
+      </router-link>
 
-      <ul>
+      <ul class="flex items-center gap-8">
         <li>
-          <router-link to="/">Home</router-link>
+          <NavLink to="/">Home</NavLink>
         </li>
         <li>
-          <router-link to="/chat">Chat</router-link>
+          <NavLink to="/chat">Chat</NavLink>
         </li>
         <li>
-          <router-link to="/blog">Blog</router-link>
+          <NavLink to="/blog">Blog</NavLink>
         </li>
-        <li>
+        <!-- <li>
           <LangSwitcher />
+        </li> -->
+      </ul>
+
+      <ul class="flex items-center gap-4">
+        <li>
+          <router-link to="/auth/login">Sign in</router-link>
+        </li>
+        <li>
+          <router-link to="/auth/register">Sign up</router-link>
         </li>
       </ul>
     </nav>
