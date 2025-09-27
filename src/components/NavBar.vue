@@ -5,17 +5,30 @@ import NavLink from "./ui/NavLink.vue";
 import StarUsLink from "./ui/buttons/StarUsLink.vue";
 import AuthLink from "./ui/buttons/AuthLink.vue";
 
+import { useAuthState } from "../services/auth";
+import AuthDropdown from "./ui/AuthDropdown.vue";
+
 export default {
   components: {
     LangSwitcher,
     NavLink,
     StarUsLink,
     AuthLink,
+    AuthDropdown,
   },
   data() {
     return {
       Logo,
+
+      user: {
+        id: null,
+        email: null,
+      },
     };
+  },
+
+  mounted() {
+    useAuthState((userState) => (this.user = userState));
   },
 };
 </script>
@@ -50,12 +63,19 @@ export default {
         <li>
           <StarUsLink />
         </li>
-        <li>
-          <AuthLink to="/auth/login">Sign in</AuthLink>
-        </li>
-        <li>
-          <AuthLink to="/auth/register">Sign up</AuthLink>
-        </li>
+        <template v-if="user.id === null">
+          <li>
+            <AuthLink to="/auth/login">Sign in</AuthLink>
+          </li>
+          <li>
+            <AuthLink to="/auth/register">Sign up</AuthLink>
+          </li>
+        </template>
+        <template v-else>
+          <li>
+            <AuthDropdown />
+          </li>
+        </template>
       </ul>
     </nav>
   </header>

@@ -3,6 +3,8 @@ import EmailIcon from "../../assets/icons/email.svg";
 import PasswordIcon from "../../assets/icons/password.svg";
 import UserIcon from "../../assets/icons/user.svg";
 
+import { signUpUser } from "../../services/auth";
+
 import CustomForm from "../../components/ui/form/CustomForm.vue";
 import CustomInput from "../../components/ui/form/CustomInput.vue";
 import CustomCheck from "../../components/ui/form/CustomCheck.vue";
@@ -26,10 +28,12 @@ export default {
       PasswordIcon,
       UserIcon,
 
-      username: "",
-      email: "",
-      password: "",
-      terms: "",
+      form: {
+        username: "",
+        email: "",
+        password: "",
+        terms: "",
+      },
 
       loading: false,
       error: "",
@@ -41,18 +45,21 @@ export default {
       this.loading = true;
 
       try {
-        // todo => login
-        console.log({
-          username: this.username,
-          email: this.email,
-          password: this.password,
-          terms: this.terms,
-        });
+        const data = await signUpUser(this.form);
+
+        // todo => remove log
+        console.log(data);
+
+        this.$router.push("/chat");
       } catch (err) {
         this.error = err.message || "Something went wrong";
       } finally {
         this.loading = false;
       }
+    },
+
+    handleChange() {
+      this.error = "";
     },
   },
 };
@@ -86,7 +93,8 @@ export default {
         label="Username:"
         placeholder="John Doe"
         :icon="UserIcon"
-        v-model:value="username"
+        v-model:value="form.username"
+        @change="handleChange"
       />
 
       <CustomInput
@@ -96,7 +104,8 @@ export default {
         label="Email:"
         placeholder="abc@xyz.com"
         :icon="EmailIcon"
-        v-model:value="email"
+        v-model:value="form.email"
+        @change="handleChange"
       />
 
       <CustomInput
@@ -106,11 +115,12 @@ export default {
         label="Password:"
         placeholder="********"
         :icon="PasswordIcon"
-        v-model:value="password"
+        v-model:value="form.password"
+        @change="handleChange"
       />
 
       <div class="mt-4 flex items-center gap-1">
-        <CustomCheck id="terms" v-model="terms"> Accept </CustomCheck>
+        <CustomCheck id="terms" v-model="form.terms"> Accept </CustomCheck>
         <span
           class="underline italic cursor-pointer text-font-secondary hover:text-font-primary"
           >terms and conditions</span
@@ -119,7 +129,7 @@ export default {
 
       <FormButton
         :loading="loading"
-        :disabled="email.trim() === '' || password.trim() === ''"
+        :disabled="form.email.trim() === '' || form.password.trim() === ''"
         class="mt-4"
         >Sign Up</FormButton
       >

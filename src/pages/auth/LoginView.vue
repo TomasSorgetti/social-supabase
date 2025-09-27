@@ -2,6 +2,8 @@
 import EmailIcon from "../../assets/icons/email.svg";
 import PasswordIcon from "../../assets/icons/password.svg";
 
+import { signInUser } from "../../services/auth";
+
 import CustomForm from "../../components/ui/form/CustomForm.vue";
 import CustomInput from "../../components/ui/form/CustomInput.vue";
 import CustomCheck from "../../components/ui/form/CustomCheck.vue";
@@ -24,9 +26,11 @@ export default {
       EmailIcon,
       PasswordIcon,
 
-      email: "",
-      password: "",
-      rememberme: false,
+      form: {
+        email: "",
+        password: "",
+        rememberme: false,
+      },
 
       loading: false,
       error: "",
@@ -38,12 +42,12 @@ export default {
       this.loading = true;
 
       try {
-        // todo => login
-        console.log({
-          email: this.email,
-          password: this.password,
-          rememberme: this.rememberme,
-        });
+        const data = await signInUser(this.form);
+
+        // todo => remove log
+        console.log(data);
+
+        this.$router.push("/chat");
       } catch (err) {
         this.error = err.message || "Something went wrong";
       } finally {
@@ -82,7 +86,7 @@ export default {
         label="Email:"
         placeholder="abc@xyz.com"
         :icon="EmailIcon"
-        v-model:value="email"
+        v-model:value="form.email"
       />
 
       <CustomInput
@@ -92,11 +96,11 @@ export default {
         label="Password:"
         placeholder="********"
         :icon="PasswordIcon"
-        v-model:value="password"
+        v-model:value="form.password"
       />
 
       <div class="flex items-center justify-between w-full mt-4">
-        <CustomCheck id="rememberme" v-model="rememberme">
+        <CustomCheck id="rememberme" v-model="form.rememberme">
           Remember me
         </CustomCheck>
         <RouterLink
@@ -109,7 +113,7 @@ export default {
 
       <FormButton
         :loading="loading"
-        :disabled="email.trim() === '' || password.trim() === ''"
+        :disabled="form.email.trim() === '' || form.password.trim() === ''"
         class="mt-4"
         >Sign In</FormButton
       >
