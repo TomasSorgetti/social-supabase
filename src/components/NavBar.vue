@@ -2,11 +2,15 @@
 import LangSwitcher from "./ui/ChangLang.vue";
 import Logo from "../assets/NerdFeed.svg";
 import NavLink from "./ui/NavLink.vue";
+import StarUsLink from "./ui/buttons/StarUsLink.vue";
+import AuthLink from "./ui/buttons/AuthLink.vue";
 
 export default {
   components: {
     LangSwitcher,
     NavLink,
+    StarUsLink,
+    AuthLink,
   },
   data() {
     return {
@@ -42,12 +46,15 @@ export default {
         </li> -->
       </ul>
 
-      <ul class="flex items-center gap-4">
+      <ul class="flex items-center gap-2">
         <li>
-          <router-link to="/auth/login">Sign in</router-link>
+          <StarUsLink />
         </li>
         <li>
-          <router-link to="/auth/register">Sign up</router-link>
+          <AuthLink to="/auth/login">Sign in</AuthLink>
+        </li>
+        <li>
+          <AuthLink to="/auth/register">Sign up</AuthLink>
         </li>
       </ul>
     </nav>

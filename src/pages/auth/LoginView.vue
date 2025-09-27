@@ -55,10 +55,10 @@ export default {
 </script>
 
 <template>
-  <main class="py-32">
+  <main class="py-36">
     <CustomForm
       @submit.prevent="handleSubmit"
-      class="flex flex-col gap-4 w-full max-w-[30rem] mx-auto mt-32"
+      class="flex flex-col gap-4 w-full max-w-[30rem] mx-auto"
     >
       <h1 class="text-3xl font-bold">Sign in</h1>
       <p class="text-font-secondary">
