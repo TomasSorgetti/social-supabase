@@ -44,22 +44,16 @@ export default {
         <img :src="Logo" alt="logo de nerd feed" />
       </router-link>
 
-      <ul class="flex items-center gap-8">
+      <ul class="flex items-center gap-2">
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
-        <li>
+        <li v-if="user.id !== null">
           <NavLink to="/chat">Chat</NavLink>
         </li>
-        <li>
-          <NavLink to="/">Blog</NavLink>
-        </li>
-        <!-- <li>
+        <li class="mx-4">
           <LangSwitcher />
-        </li> -->
-      </ul>
-
-      <ul class="flex items-center gap-2">
+        </li>
         <li>
           <StarUsLink />
         </li>
