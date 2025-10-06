@@ -19,10 +19,6 @@ export default {
       // loadingPosts: false,
       posts: [],
 
-      form: {
-        message: "",
-      },
-
       user: {
         id: null,
         email: null,
@@ -35,19 +31,15 @@ export default {
   },
 
   async mounted() {
-    unsubscribeFromAuthState = useAuthState(
-      (userState) => (this.user = userState)
-    );
-    unsubscribeFromPostState = usePostState(async (newPost) => {
-      this.posts.push(newPost);
-
-      await this.$nextTick();
-
-      this.$refs.postContainer.scrollTop =
-        this.$refs.postContainer.scrollHeight;
+    unsubscribeFromAuthState = useAuthState(async (userState) => {
+      this.user = userState;
+      if (this.user?.id) {
+        this.posts = await getPosts(this.user.id);
+      }
     });
-
-    this.posts = await getPosts();
+    unsubscribeFromPostState = usePostState((newPost) => {
+      this.posts.unshift(newPost);
+    });
   },
 
   unmounted() {
@@ -61,7 +53,7 @@ export default {
   <main class="container mx-auto max-w-5xl px-4 py-32">
     <h1 class="text-3xl font-bold">Chat Page</h1>
 
-    <CreatePost :userId="user.id || ''" />
+    <CreatePost />
 
     <ul
       ref="postContainer"
@@ -73,10 +65,14 @@ export default {
           :to="'chat/' + post.id"
           :avatar="post.user.avatar"
           :username="post.user.username"
+          :email="post.user.email"
           :content="post.content"
           :date="post.created_at"
           :comments="post.comments.length"
           :favorites="post.favorites.length"
+          :postId="post.id"
+          :userId="user.id"
+          :isFavorited="post.isFavorited"
         />
       </li>
     </ul>

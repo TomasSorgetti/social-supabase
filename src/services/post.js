@@ -12,7 +12,7 @@ export function usePostState(callback) {
         table: "posts",
       },
       (payload) => {
-        messages.value.push(payload.new);
+        callback(payload.new);
       }
     )
     .subscribe();
@@ -22,7 +22,7 @@ export function usePostState(callback) {
   };
 }
 
-export async function getPosts() {
+export async function getPosts(userId) {
   const { data, error } = await supabase
     .from("posts")
     .select(
@@ -30,26 +30,20 @@ export async function getPosts() {
       id,
       content,
       created_at,
-      user:profile (
-        id,
-        username,
-        avatar
-      ),
-      comments (
-        id
-      ),
-      favorites (
-        id
-      )
+      user:profile ( id, username, avatar ),
+      comments ( id ),
+      favorites ( user_id )
     `
     )
     .order("created_at", { ascending: false });
 
-  if (error) {
-    throw error;
-  }
+  if (error) throw error;
 
-  return data;
+  return data.map((post) => ({
+    ...post,
+    isFavorited: post.favorites.some((fav) => fav.user_id === userId),
+    favoritesCount: post.favorites.length,
+  }));
 }
 
 export async function createPost(userId, formData) {

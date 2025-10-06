@@ -1,18 +1,14 @@
 <script>
 import { PaperClipIcon, PhotoIcon } from "@heroicons/vue/24/solid";
-
-import MainButton from "../../ui/buttons/MainButton.vue";
+import { useAuthState } from "../../../services/auth";
 import { createPost } from "../../../services/post";
+import MainButton from "../../ui/buttons/MainButton.vue";
+
+let unsubscribeFromAuthState = () => {};
 
 export default {
   name: "CreatePost",
-  props: {
-    userId: {
-      type: String,
-      required: false,
-      default: null,
-    },
-  },
+
   components: {
     MainButton,
     PaperClipIcon,
@@ -26,8 +22,18 @@ export default {
       form: {
         message: "",
       },
+
+      user: {
+        id: null,
+        email: null,
+        profileId: null,
+        username: null,
+        tag: null,
+        avatar: null,
+      },
     };
   },
+
   methods: {
     async handleSubmit(event) {
       event.preventDefault();
@@ -37,7 +43,7 @@ export default {
       this.sendingPost = true;
 
       try {
-        await createPost(this.userId, this.form);
+        await createPost(this.user.id, this.form);
         this.form.message = "";
       } catch (err) {
         this.error = err.message || "Something went wrong";
@@ -46,9 +52,19 @@ export default {
       }
     },
   },
+  async mounted() {
+    unsubscribeFromAuthState = useAuthState(
+      (userState) => (this.user = userState)
+    );
+  },
+
+  unmounted() {
+    unsubscribeFromAuthState();
+  },
 };
 </script>
 
+<!-- todo => for create a post need to complete profile first -->
 <template>
   <form @submit="handleSubmit" class="w-full mt-10">
     <label for="message" class="sr-only">Message:</label>
