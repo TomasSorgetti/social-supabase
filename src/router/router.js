@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../pages/HomeView.vue";
-import ChatView from "../pages/ChatView.vue";
+import PostView from "../pages/PostView.vue";
 import LoginView from "../pages/auth/LoginView.vue";
 import RegisterView from "../pages/auth/RegisterView.vue";
 import ForgotPasswordView from "../pages/auth/ForgotPasswordView.vue";
@@ -39,7 +39,7 @@ const routes = [
   // private routes
   {
     path: "/chat",
-    component: ChatView,
+    component: PostView,
     meta: { requiresAuth: true },
   },
   {

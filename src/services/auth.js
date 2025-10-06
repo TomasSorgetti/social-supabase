@@ -4,6 +4,7 @@ import { getProfile } from "./user";
 let user = {
   id: null,
   email: null,
+  profileId: null,
   username: null,
   tag: null,
   avatar: null,
@@ -22,8 +23,6 @@ async function getUser() {
   // if (user.id) return;
 
   const { data, error } = await supabase.auth.getUser();
-
-  console.log("data", data);
 
   if (error || !data.user) {
     console.warn("No user logged in.", error);
@@ -49,6 +48,7 @@ async function loadUserProfile(userId) {
   }
 
   setUser({
+    profileId: data.user_id,
     username: data.username,
     avatar: data.avatar_url,
     tag: data.tag,

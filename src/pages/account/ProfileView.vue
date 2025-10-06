@@ -10,6 +10,7 @@ export default {
       user: {
         id: null,
         email: null,
+        profileId: null,
         username: null,
         tag: null,
         avatar: null,
@@ -20,6 +21,7 @@ export default {
     unsubscribeFromAuthState = useAuthState(
       (userState) => (this.user = userState)
     );
+    console.log("user", this.user);
   },
   unmounted() {
     unsubscribeFromAuthState();

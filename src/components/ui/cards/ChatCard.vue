@@ -8,10 +8,12 @@ import ShareIcon from "../../../assets/icons/share.svg";
 
 const props = defineProps({
   to: { type: String, default: "/#" },
-  avatar: { type: String, required: true },
-  name: { type: String, required: true },
-  message: { type: String, required: true },
+  avatar: { type: String, required: false, default: null },
+  username: { type: String, required: true },
+  content: { type: String, required: true },
   date: { type: [String, Date], required: true },
+  comments: { type: Number, default: 0 },
+  favorites: { type: Number, default: 0 },
 });
 
 const formatedDate = computed(() => {
@@ -25,19 +27,15 @@ const formatedDate = computed(() => {
   >
     <div
       class="absolute -top-[1px] -left-[1px] w-5 h-5 border-l border-t group-hover:border-primary duration-300 ease-in-out"
-      :class="borderColor"
     ></div>
     <div
       class="absolute -top-[1px] -right-[1px] w-5 h-5 border-r border-t group-hover:border-primary duration-300 ease-in-out"
-      :class="borderColor"
     ></div>
     <div
       class="absolute -bottom-[1px] -left-[1px] w-5 h-5 border-l border-b group-hover:border-primary duration-300 ease-in-out"
-      :class="borderColor"
     ></div>
     <div
       class="absolute -bottom-[1px] -right-[1px] w-5 h-5 border-r border-b group-hover:border-primary duration-300 ease-in-out"
-      :class="borderColor"
     ></div>
 
     <div class="flex items-center gap-4">
@@ -46,16 +44,16 @@ const formatedDate = computed(() => {
       >
         <img
           :src="avatar ? avatar : defaultAvatar"
-          alt=""
+          :alt="username + ' avatar'"
           draggable="false"
           loading="lazy"
           class="w-full h-full object-contain"
         />
       </div>
-      <h3>{{ name }}</h3>
+      <h3>{{ username }}</h3>
     </div>
     <p class="text-font-secondary mt-2 flex-1 text-base lg:text-lg">
-      {{ message }}
+      {{ content }}
     </p>
 
     <div
@@ -65,17 +63,17 @@ const formatedDate = computed(() => {
         <li>
           <button class="flex items-center gap-1 cursor-pointer">
             <img :src="FavoriteIcon" alt="favorite icon" />
-            12k
+            {{ favorites }}
           </button>
         </li>
         <li>
           <button class="flex items-center gap-1 cursor-pointer">
             <img :src="CommentIcon" alt="comment icon" />
-            700
+            {{ comments }}
           </button>
         </li>
         <li>
-          <button class="cursor-pointer">
+          <button class="cursor-pointer flex items-center">
             <img :src="ShareIcon" alt="share icon" />
           </button>
         </li>
