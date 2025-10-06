@@ -1,14 +1,21 @@
 import { supabase } from "../lib/supabase";
+import { getProfile } from "./user";
 
 let user = {
   id: null,
   email: null,
+  username: null,
+  tag: null,
+  avatar: null,
 };
 let observers = [];
 
-getUserProfile();
+if (localStorage.getItem("user")) {
+  user = JSON.parse(localStorage.getItem("user"));
+  getUser();
+}
 
-async function getUserProfile() {
+async function getUser() {
   // const isLoggedIn = localStorage.getItem("isLoggedIn");
   // if (!isLoggedIn) return;
 
@@ -16,7 +23,9 @@ async function getUserProfile() {
 
   const { data, error } = await supabase.auth.getUser();
 
-  if (error) {
+  console.log("data", data);
+
+  if (error || !data.user) {
     console.warn("No user logged in.", error);
     return;
   }
@@ -24,6 +33,25 @@ async function getUserProfile() {
   setUser({
     id: data.user.id,
     email: data.user.email,
+  });
+
+  await loadUserProfile(data.user.id);
+}
+
+async function loadUserProfile(userId) {
+  if (!userId) return;
+
+  const { data, error } = await getProfile(userId);
+
+  if (error) {
+    console.warn("Error loading profile", error);
+    return;
+  }
+
+  setUser({
+    username: data.username,
+    avatar: data.avatar_url,
+    tag: data.tag,
   });
 }
 
@@ -34,7 +62,7 @@ export async function signUpUser({ email, password }) {
 
   setUser({ id: data.user.id, email: data.user.email });
 
-  localStorage.setItem("isLoggedIn", "true");
+  // localStorage.setItem("isLoggedIn", "true");
 
   return data;
 }
@@ -49,7 +77,7 @@ export async function signInUser({ email, password }) {
 
   setUser({ id: data.user.id, email: data.user.email });
 
-  console.log("Data: ", data);
+  await loadUserProfile(data.user.id);
 
   return data.user;
 }
@@ -59,15 +87,19 @@ export async function signOutUser() {
 
   if (error) throw new Error(error.message);
 
-  localStorage.removeItem("isLoggedIn");
+  // localStorage.removeItem("isLoggedIn");
 
   setUser({ id: null, email: null });
 }
 
-export async function useAuthState(callback) {
+export function useAuthState(callback) {
   observers.push(callback);
 
   notify(callback);
+
+  return () => {
+    observers = observers.filter((o) => o !== callback);
+  };
 }
 
 function notify(callback) {
@@ -83,5 +115,12 @@ function setUser(data) {
     ...user,
     ...data,
   };
+
+  if (user.id) {
+    localStorage.setItem("user", JSON.stringify(user));
+  } else {
+    localStorage.removeItem("user");
+  }
+
   notifyAll();
 }

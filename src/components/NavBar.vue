@@ -8,6 +8,8 @@ import AuthLink from "./ui/buttons/AuthLink.vue";
 import { useAuthState } from "../services/auth";
 import AuthDropdown from "./ui/AuthDropdown.vue";
 
+let unsubscribeFromAuthState = () => {};
+
 export default {
   components: {
     LangSwitcher,
@@ -28,7 +30,12 @@ export default {
   },
 
   mounted() {
-    useAuthState((userState) => (this.user = userState));
+    unsubscribeFromAuthState = useAuthState(
+      (userState) => (this.user = userState)
+    );
+  },
+  unmounted() {
+    unsubscribeFromAuthState();
   },
 };
 </script>
@@ -57,6 +64,7 @@ export default {
         <li>
           <StarUsLink />
         </li>
+
         <template v-if="user.id === null">
           <li>
             <AuthLink to="/auth/login">Sign in</AuthLink>

@@ -2,6 +2,9 @@
 import { computed } from "vue";
 import { formatDate } from "../../../utils/formatDate";
 import defaultAvatar from "../../../assets/images/avatar.webp";
+import FavoriteIcon from "../../../assets/icons/star.svg";
+import CommentIcon from "../../../assets/icons/comment.svg";
+import ShareIcon from "../../../assets/icons/share.svg";
 
 const props = defineProps({
   to: { type: String, default: "/#" },
@@ -17,9 +20,8 @@ const formatedDate = computed(() => {
 </script>
 
 <template>
-  <a
-    :href="to"
-    class="relative group min-h-46 w-full border border-border bg-background p-4 flex flex-col hover:shadow-lg hover:shadow-primary hover:scale-105 duration-300 ease-in-out"
+  <div
+    class="relative group min-h-46 w-full border border-border bg-background p-4 flex flex-col justify-between items-start hover:scale-105 duration-300 ease-in-out"
   >
     <div
       class="absolute -top-[1px] -left-[1px] w-5 h-5 border-l border-t group-hover:border-primary duration-300 ease-in-out"
@@ -52,13 +54,36 @@ const formatedDate = computed(() => {
       </div>
       <h3>{{ name }}</h3>
     </div>
-    <p class="text-font-secondary mt-2 text-base lg:text-lg">
+    <p class="text-font-secondary mt-2 flex-1 text-base lg:text-lg">
       {{ message }}
     </p>
-    <p
-      class="absolute bottom-3 right-3 text-font-secondary text-xs mt-2 italic"
+
+    <div
+      class="text-font-secondary text-sm w-full flex items-center justify-between"
     >
-      {{ formatedDate }}
-    </p>
-  </a>
+      <ul class="flex items-center gap-3">
+        <li>
+          <button class="flex items-center gap-1 cursor-pointer">
+            <img :src="FavoriteIcon" alt="favorite icon" />
+            12k
+          </button>
+        </li>
+        <li>
+          <button class="flex items-center gap-1 cursor-pointer">
+            <img :src="CommentIcon" alt="comment icon" />
+            700
+          </button>
+        </li>
+        <li>
+          <button class="cursor-pointer">
+            <img :src="ShareIcon" alt="share icon" />
+          </button>
+        </li>
+      </ul>
+
+      <p class="italic">
+        {{ formatedDate }}
+      </p>
+    </div>
+  </div>
 </template>

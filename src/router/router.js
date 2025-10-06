@@ -83,9 +83,9 @@ router.beforeEach((to, from) => {
     return "/auth/login";
   }
 
-  if (to.meta.guestOnly && user.id !== null) {
-    return "/";
-  }
+  // if (to.meta.guestOnly && user.id !== null) {
+  //   return "/";
+  // }
 });
 
 export default router;

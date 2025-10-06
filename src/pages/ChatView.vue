@@ -11,7 +11,7 @@ const newMessage = ref("");
 async function loadMessages() {
   try {
     const { data, error } = await supabase
-      .from("global_chat")
+      .from("posts")
       .select("*")
       .order("created_at", { ascending: true });
 
@@ -19,13 +19,13 @@ async function loadMessages() {
     messages.value = data;
 
     const channel = supabase
-      .channel("chat:global_chat")
+      .channel("chat:posts")
       .on(
         "postgres_changes",
         {
           event: "INSERT",
           schema: "public",
-          table: "global_chat",
+          table: "posts",
         },
         (payload) => {
           messages.value.push(payload.new);
