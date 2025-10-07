@@ -24,11 +24,16 @@ export async function createUserProfile(data) {
  * @param {*} data
  */
 export async function updateUserProfile(data) {
-  // validate data
-  const { error } = await supabase.from("profile").insert(data);
+  const { id, username, tag } = data;
+
+  const { error } = await supabase
+    .from("profile")
+    .update({ username, tag })
+    .eq("id", id);
 
   if (error) throw new Error(error.message);
 }
+
 export async function getUserProfileById(userId) {
   const { data, error } = await supabase
     .from("profile")

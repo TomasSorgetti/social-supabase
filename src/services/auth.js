@@ -119,7 +119,7 @@ function notifyAll() {
   observers.forEach(notify);
 }
 
-function setUser(data) {
+export function setUser(data) {
   user = {
     ...user,
     ...data,
