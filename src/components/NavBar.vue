@@ -25,6 +25,10 @@ export default {
       user: {
         id: null,
         email: null,
+        profileId: null,
+        username: null,
+        tag: null,
+        avatar: null,
       },
     };
   },
@@ -53,10 +57,10 @@ export default {
 
       <ul class="flex items-center gap-2">
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">{{ $t("Navbar.home") }}</NavLink>
         </li>
         <li v-if="user.id !== null">
-          <NavLink to="/feed">Feed</NavLink>
+          <NavLink to="/feed">{{ $t("Navbar.feed") }}</NavLink>
         </li>
         <li class="mx-4">
           <LangSwitcher />
@@ -67,15 +71,15 @@ export default {
 
         <template v-if="user.id === null">
           <li>
-            <AuthLink to="/auth/login">Sign in</AuthLink>
+            <AuthLink to="/auth/login">{{ $t("Navbar.signin") }}</AuthLink>
           </li>
           <li>
-            <AuthLink to="/auth/register">Sign up</AuthLink>
+            <AuthLink to="/auth/register">{{ $t("Navbar.signup") }}</AuthLink>
           </li>
         </template>
         <template v-else>
           <li>
-            <AuthDropdown />
+            <AuthDropdown :user="user" />
           </li>
         </template>
       </ul>

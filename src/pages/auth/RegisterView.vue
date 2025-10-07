@@ -50,7 +50,7 @@ export default {
         // todo => remove log
         console.log(data);
 
-        this.$router.push("/chat");
+        this.$router.push("/feed");
       } catch (err) {
         this.error = err.message || "Something went wrong";
       } finally {

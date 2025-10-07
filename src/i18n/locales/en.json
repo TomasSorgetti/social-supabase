@@ -1,4 +1,16 @@
 {
+  "Navbar": {
+    "home": "Home",
+    "feed": "Feed",
+    "starus": "Star us",
+    "signin": "Sign in",
+    "signup": "Sign up",
+    "account": "Account",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
   "HomePage": {
     "Hero": {
       "label": "For developers, by developers",

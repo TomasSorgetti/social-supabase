@@ -1,29 +1,41 @@
 {
+  "Navbar": {
+    "home": "Inicio",
+    "feed": "Feed",
+    "starus": "Star us",
+    "signin": "Iniciar sesión",
+    "signup": "Registrarse",
+    "account": "Cuenta",
+    "dashboard": "Dashboard",
+    "profile": "Perfil",
+    "settings": "Configuración",
+    "logout": "Cerrar sesión"
+  },
   "HomePage": {
     "Hero": {
-      "label": "For developers, by developers",
-      "title": "Share your bugs, memes and code tips.",
-      "description": "Nerd Feed is the social network for programmers: a space to share ideas, epic bugs, and quick tips.",
-      "cta": "Take a Look"
+      "label": "Para desarrolladores, por desarrolladores",
+      "title": "Comparte tus bugs, memes y consejos de código.",
+      "description": "Nerd Feed es la red social para programadores: un espacio para compartir ideas, bugs épicos y consejos rápidos.",
+      "cta": "Echale un vistazo"
     },
     "About": {
-      "title": "What makes Nerd Feed unique",
-      "description": "Nerd Feed is more than just posts. It’s a simple, fast, and fun way for developers to connect, share, and build their identity.",
+      "title": "Qué hace único a Nerd Feed",
+      "description": "Nerd Feed es más que publicaciones. Es una forma simple, rápida y divertida para que los desarrolladores se conecten, compartan y construyan su identidad.",
       "cards": [
         {
-          "label": "Community",
-          "title": "Connect with other developers",
-          "description": "Join a feed where programmers from all levels share insights, challenges, and wins in real time."
+          "label": "Comunidad",
+          "title": "Conéctate con otros desarrolladores",
+          "description": "Únete a un feed donde programadores de todos los niveles comparten conocimientos, desafíos y logros en tiempo real."
         },
         {
-          "label": "Simplicity",
-          "title": "Post in seconds",
-          "description": "Write and share your thoughts, bugs, or memes in under 280 characters. No distractions, just code talk."
+          "label": "Simplicidad",
+          "title": "Publica en segundos",
+          "description": "Escribe y comparte tus ideas, bugs o memes en menos de 280 caracteres. Sin distracciones, solo conversación de código."
         },
         {
-          "label": "Identity",
-          "title": "Build your dev profile",
-          "description": "Show who you are: customize your profile, share your posts, and let others follow your coding journey."
+          "label": "Identidad",
+          "title": "Construye tu perfil de desarrollador",
+          "description": "Muestra quién eres: personaliza tu perfil, comparte tus publicaciones y permite que otros sigan tu trayectoria de programación."
         }
       ]
     }

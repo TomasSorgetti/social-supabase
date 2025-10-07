@@ -1,7 +1,7 @@
 <script setup>
 const {
   type,
-  to = "/chat",
+  to = "/feed",
   disabled = false,
 } = defineProps(["type", "to", "disabled"]);
 
