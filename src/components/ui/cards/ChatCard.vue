@@ -1,13 +1,16 @@
 <script>
-import { supabase } from "../../../lib/supabase";
 import defaultAvatar from "../../../assets/images/avatar.webp";
 import FavoriteIcon from "../../../assets/icons/star.svg";
 import CommentIcon from "../../../assets/icons/comment.svg";
 import ShareIcon from "../../../assets/icons/share.svg";
 import { formatDate } from "../../../utils/formatDate";
+import FavoriteButton from "../buttons/FavoriteButton.vue";
 
 export default {
   name: "ChatCard",
+  components: {
+    FavoriteButton,
+  },
   props: {
     postId: { type: String, required: true },
     userId: { type: String, required: true },
@@ -22,8 +25,6 @@ export default {
   },
   data() {
     return {
-      localIsFavorited: this.isFavorited,
-      favoritesCount: this.favorites,
       defaultAvatar,
       FavoriteIcon,
       CommentIcon,
@@ -33,35 +34,6 @@ export default {
   computed: {
     formattedDate() {
       return formatDate(this.date);
-    },
-  },
-  methods: {
-    async toggleFavorite() {
-      if (!this.userId) return;
-
-      if (this.localIsFavorited) {
-        // Quitar favorito
-        const { error } = await supabase
-          .from("favorites")
-          .delete()
-          .eq("post_id", this.postId)
-          .eq("user_id", this.userId);
-
-        if (!error) {
-          this.localIsFavorited = false;
-          this.favoritesCount = Math.max(0, this.favoritesCount - 1);
-        }
-      } else {
-        // Agregar favorito
-        const { error } = await supabase
-          .from("favorites")
-          .insert([{ post_id: this.postId, user_id: this.userId }]);
-
-        if (!error) {
-          this.localIsFavorited = true;
-          this.favoritesCount += 1;
-        }
-      }
     },
   },
 };
@@ -108,20 +80,12 @@ export default {
     >
       <ul class="flex items-center gap-3">
         <li>
-          <button
-            @click="toggleFavorite"
-            class="flex items-center gap-1 cursor-pointer"
-            :class="{ 'text-yellow-400': localIsFavorited }"
-          >
-            <img
-              :src="FavoriteIcon"
-              alt="favorite icon"
-              :class="{
-                'brightness-150 saturate-200 hue-rotate-10': localIsFavorited,
-              }"
-            />
-            {{ favoritesCount }}
-          </button>
+          <FavoriteButton
+            :postId="postId"
+            :userId="userId"
+            :initialIsFavorited="isFavorited"
+            :initialCount="favorites"
+          />
         </li>
 
         <li>
