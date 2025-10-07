@@ -2,6 +2,7 @@
 import Label from "../../ui/Label.vue";
 import MainButton from "../../ui/buttons/MainButton.vue";
 import CounterImage from "../../../assets/images/counterdown.webp";
+import Countdown from "../../ui/Countdown.vue";
 </script>
 
 <template>
@@ -34,9 +35,7 @@ import CounterImage from "../../../assets/images/counterdown.webp";
         Be among the first to join Nerd Feed and share bugs, memes, and code
         tips before anyone else.
       </p>
-      <span class="font-bold text-font-primary text-7xl">
-        241 : 00 : 00 : 00
-      </span>
+      <Countdown date="2025-10-31T23:59:59" />
     </div>
     <img
       :src="CounterImage"
