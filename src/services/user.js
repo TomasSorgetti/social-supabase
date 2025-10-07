@@ -1,16 +1,19 @@
 import { supabase } from "../lib/supabase";
 
 /**
- *
- * @param {*} userId
+ * Obtiene el perfil de un usuario
+ * @param {string} userId
+ * @returns {Promise<object>} Perfil
  */
 export async function getProfile(userId) {
   return await supabase.from("profile").select("*").eq("id", userId).single();
 }
 
 /**
- *
- * @param {*} data
+ * Crea un nuevo perfil
+ * @param {{id: string, username?: string, tag?: string, avatar?: string}} data
+ * @returns {Promise<void>}
+ * @throws {Error} Si ocurre un error
  */
 export async function createUserProfile(data) {
   // validate data
@@ -20,8 +23,10 @@ export async function createUserProfile(data) {
 }
 
 /**
- *
- * @param {*} data
+ * Actualiza un perfil
+ * @param {{id: string, username?: string, tag?: string}} data
+ * @returns {Promise<void>}
+ * @throws {Error} Si ocurre un error
  */
 export async function updateUserProfile(data) {
   const { id, username, tag } = data;
@@ -34,6 +39,12 @@ export async function updateUserProfile(data) {
   if (error) throw new Error(error.message);
 }
 
+/**
+ * Obtiene un perfil de usuario junto con sus posts
+ * @param {string} userId
+ * @returns {Promise<object>}
+ * @throws {Error} Si ocurre un error
+ */
 export async function getUserProfileById(userId) {
   const { data, error } = await supabase
     .from("profile")

@@ -1,5 +1,10 @@
 import { supabase } from "../lib/supabase";
 
+/**
+ * Permite suscribirse en tiempo real a los posts.
+ * @param {Function} callback Función que se ejecuta con el nuevo post
+ * @returns {Function} Función para cancelar la suscripción
+ */
 export function usePostState(callback) {
   const postChannel = supabase.channel("posts");
 
@@ -22,6 +27,12 @@ export function usePostState(callback) {
   };
 }
 
+/**
+ * Obtiene todos los posts
+ * @param {string} userId
+ * @returns {Promise<Array>}
+ * @throws {Error} Si ocurre un error
+ */
 export async function getPosts(userId) {
   const { data, error } = await supabase
     .from("posts")
@@ -46,6 +57,13 @@ export async function getPosts(userId) {
   }));
 }
 
+/**
+ * Crea un nuevo post
+ * @param {string} userId
+ * @param {{message: string}} formData
+ * @returns {Promise<void>}
+ * @throws {Error} Si ocurre un error
+ */
 export async function createPost(userId, formData) {
   const { error } = await supabase.from("posts").insert([
     {

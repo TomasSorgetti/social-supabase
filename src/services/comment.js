@@ -1,5 +1,10 @@
 import { supabase } from "../lib/supabase";
 
+/**
+ * Obtiene los comentarios de un post
+ * @param {string} postId
+ * @returns {Promise<{data: object[], error: object|null}>} Los comentarios y error
+ */
 export async function getComments(postId) {
   return await supabase
     .from("comments")
@@ -15,6 +20,13 @@ export async function getComments(postId) {
     .order("created_at", { ascending: true });
 }
 
+/**
+ * Agrega un nuevo comentario
+ * @param {string} postId
+ * @param {string} userId
+ * @param {string} newComment
+ * @returns {Promise<{data: object, error: object|null}>} Comentario creado y error
+ */
 export async function addComment(postId, userId, newComment) {
   return await supabase
     .from("comments")

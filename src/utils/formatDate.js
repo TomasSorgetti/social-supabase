@@ -1,3 +1,8 @@
+/**
+ * Formatea una fecha en formato DD/MM/YYYY.
+ * @param {string|Date|number} date
+ * @returns {string} Fecha formateada
+ */
 export const formatDate = (date) => {
   const dateObj = new Date(date);
   const day = dateObj.getDate().toString().padStart(2, "0");

@@ -16,6 +16,9 @@ if (localStorage.getItem("user")) {
   getUser();
 }
 
+/**
+ * Obtiene el usuario actual y carga su perfil.
+ */
 async function getUser() {
   // const isLoggedIn = localStorage.getItem("isLoggedIn");
   // if (!isLoggedIn) return;
@@ -37,6 +40,10 @@ async function getUser() {
   await loadUserProfile(data.user.id);
 }
 
+/**
+ * Carga el perfil del usuario
+ * @param {string} userId
+ */
 async function loadUserProfile(userId) {
   if (!userId) return;
 
@@ -55,6 +62,12 @@ async function loadUserProfile(userId) {
   });
 }
 
+/**
+ * Registra un usuario.
+ * @param {{username: string, email: string, password: string}}
+ * @returns {Promise<object>}
+ * @throws {Error} Si ocurre un error
+ */
 export async function signUpUser({ username, email, password }) {
   const { data, error } = await supabase.auth.signUp({ email, password });
 
@@ -69,6 +82,12 @@ export async function signUpUser({ username, email, password }) {
   return data;
 }
 
+/**
+ * Inicia sesión
+ * @param {{email: string, password: string}} param0 Credenciales
+ * @returns {Promise<object>} Info del usuario
+ * @throws {Error} Si ocurre un error
+ */
 export async function signInUser({ email, password }) {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
@@ -84,6 +103,10 @@ export async function signInUser({ email, password }) {
   return data.user;
 }
 
+/**
+ * Cierra la sesión
+ * @throws {Error} Si ocurre un error
+ */
 export async function signOutUser() {
   const { error } = await supabase.auth.signOut();
 
@@ -101,6 +124,11 @@ export async function signOutUser() {
   });
 }
 
+/**
+ * Permite suscribirse a los cambios del estado
+ * @param {Function} callback Función que se ejecuta al cambiar el estado
+ * @returns {Function} Función para cancelar la suscripción
+ */
 export function useAuthState(callback) {
   observers.push(callback);
 
@@ -111,14 +139,23 @@ export function useAuthState(callback) {
   };
 }
 
+/**
+ * Notifica a un observer con el estado actual del user
+ * @param {Function} callback Observer
+ */
 function notify(callback) {
   callback({ ...user });
 }
 
+/** Notifica a todos los observers */
 function notifyAll() {
   observers.forEach(notify);
 }
 
+/**
+ * Actualiza los datos y notifica a los observers.
+ * @param {Partial<typeof user>} data datos del usuario
+ */
 export function setUser(data) {
   user = {
     ...user,
