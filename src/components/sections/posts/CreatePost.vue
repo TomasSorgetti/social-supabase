@@ -83,7 +83,7 @@ export default {
         <PaperClipIcon class="w-8 h-8 text-border cursor-not-allowed" />
         <PhotoIcon class="w-8 h-8 text-border cursor-not-allowed" />
       </div>
-      <MainButton type="submit">Send</MainButton>
+      <MainButton type="submit">{{ $t("PostPage.send") }}</MainButton>
     </div>
   </form>
 </template>

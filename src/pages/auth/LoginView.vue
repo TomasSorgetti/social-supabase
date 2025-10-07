@@ -64,15 +64,14 @@ export default {
       @submit.prevent="handleSubmit"
       class="flex flex-col gap-4 w-full max-w-[30rem] mx-auto"
     >
-      <h1 class="text-3xl font-bold">Sign in</h1>
+      <h1 class="text-3xl font-bold">{{ $t("LoginPage.title") }}</h1>
       <p class="text-font-secondary">
-        We´ll get you up and running so you can verify your personal information
-        and customize your account.
+        {{ $t("LoginPage.content") }}
       </p>
 
       <div class="flex gap-4 items-center w-full">
-        <GoogleButton>Sign in with Google</GoogleButton>
-        <GithubButton>Sign in with GitHub</GithubButton>
+        <GoogleButton>{{ $t("LoginPage.google") }}</GoogleButton>
+        <GithubButton>{{ $t("LoginPage.github") }}</GithubButton>
       </div>
 
       <small class="text-red-500 text-sm min-h-5">
@@ -83,7 +82,7 @@ export default {
         id="email"
         type="email"
         name="email"
-        label="Email:"
+        :label="$t('LoginPage.email')"
         placeholder="abc@xyz.com"
         :icon="EmailIcon"
         v-model:value="form.email"
@@ -93,7 +92,7 @@ export default {
         id="password"
         type="password"
         name="password"
-        label="Password:"
+        :label="$t('LoginPage.password')"
         placeholder="********"
         :icon="PasswordIcon"
         v-model:value="form.password"
@@ -101,13 +100,13 @@ export default {
 
       <div class="flex items-center justify-between w-full mt-4">
         <CustomCheck id="rememberme" v-model="form.rememberme">
-          Remember me
+          {{ $t("LoginPage.rememberme") }}
         </CustomCheck>
         <RouterLink
           to="/auth/forgot-password"
           class="italic text-sm text-font-secondary hover:underline"
         >
-          Forgot password?
+          {{ $t("LoginPage.forgot") }}
         </RouterLink>
       </div>
 
@@ -115,13 +114,13 @@ export default {
         :loading="loading"
         :disabled="form.email.trim() === '' || form.password.trim() === ''"
         class="mt-4"
-        >Sign In</FormButton
+        >{{ $t("LoginPage.signin") }}</FormButton
       >
 
       <small class="text-base text-center mt-4 text-font-secondary">
-        You don´t have an account?
+        {{ $t("LoginPage.allready") }}
         <RouterLink to="/auth/register" class="text-primary hover:underline">
-          Register here
+          {{ $t("LoginPage.signup") }}
         </RouterLink>
       </small>
     </CustomForm>

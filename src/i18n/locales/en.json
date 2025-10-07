@@ -42,10 +42,34 @@
   },
   "PostPage": {
     "title": "Start posting, tell us a joke or a bug",
-    "placeholder": "The perfect bug: It only reproduces on the QA team."
+    "placeholder": "The perfect bug: It only reproduces on the QA team.",
+    "send": "Send"
   },
-  "welcome": "Welcome to the app",
-  "greeting": "Hello, {name}!",
-  "language": "Language",
-  "switch_to": "Switch to {lang}"
+  "RegisterPage": {
+    "title": "Sign Up",
+    "content": "We´ll get you up and running so you can verify your personal information and customize your account.",
+    "google": "Sign up with Google",
+    "github": "Sign up with GitHub",
+    "username": "Username:",
+    "email": "Email:",
+    "password": "Password:",
+    "accept": "Accept",
+    "terms": "terms and conditions",
+    "signup": "Sign Up",
+    "allready": "Allready have an account?",
+    "signin": "Sign In"
+  },
+  "LoginPage": {
+    "title": "Sign In",
+    "content": "We´ll get you up and running so you can verify your personal information and customize your account.",
+    "google": "Sign in with Google",
+    "github": "Sign in with GitHub",
+    "email": "Email:",
+    "password": "Password:",
+    "rememberme": "Remember me",
+    "forgot": "Forgot password?",
+    "signin": "Sign In",
+    "allready": "You don't have an account?",
+    "signup": "Register here"
+  }
 }

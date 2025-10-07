@@ -69,17 +69,16 @@ export default {
   <main class="py-36">
     <CustomForm
       @submit.prevent="handleSubmit"
-      class="flex flex-col gap-4 w-full max-w-[30rem] mx-auto"
+      class="flex flex-col gap-4 w-full max-w-[32rem] mx-auto"
     >
-      <h1 class="text-3xl font-bold">Sign up</h1>
+      <h1 class="text-3xl font-bold">{{ $t("RegisterPage.title") }}</h1>
       <p class="text-font-secondary">
-        We´ll get you up and running so you can verify your personal information
-        and customize your account.
+        {{ $t("RegisterPage.content") }}
       </p>
 
-      <div class="flex gap-4 items-center w-full">
-        <GoogleButton>Sign up with Google</GoogleButton>
-        <GithubButton>Sign up with GitHub</GithubButton>
+      <div class="flex gap-2 items-center w-full">
+        <GoogleButton>{{ $t("RegisterPage.google") }}</GoogleButton>
+        <GithubButton>{{ $t("RegisterPage.github") }}</GithubButton>
       </div>
 
       <small class="text-red-500 text-sm min-h-5">
@@ -90,7 +89,7 @@ export default {
         id="username"
         type="text"
         name="username"
-        label="Username:"
+        :label="$t('RegisterPage.username')"
         placeholder="John Doe"
         :icon="UserIcon"
         v-model:value="form.username"
@@ -101,7 +100,7 @@ export default {
         id="email"
         type="email"
         name="email"
-        label="Email:"
+        :label="$t('RegisterPage.email')"
         placeholder="abc@xyz.com"
         :icon="EmailIcon"
         v-model:value="form.email"
@@ -112,7 +111,7 @@ export default {
         id="password"
         type="password"
         name="password"
-        label="Password:"
+        :label="$t('RegisterPage.password')"
         placeholder="********"
         :icon="PasswordIcon"
         v-model:value="form.password"
@@ -120,10 +119,12 @@ export default {
       />
 
       <div class="mt-4 flex items-center gap-1">
-        <CustomCheck id="terms" v-model="form.terms"> Accept </CustomCheck>
+        <CustomCheck id="terms" v-model="form.terms">
+          {{ $t("RegisterPage.accept") }}
+        </CustomCheck>
         <span
           class="underline italic cursor-pointer text-font-secondary hover:text-font-primary"
-          >terms and conditions</span
+          >{{ $t("RegisterPage.terms") }}</span
         >
       </div>
 
@@ -131,13 +132,13 @@ export default {
         :loading="loading"
         :disabled="form.email.trim() === '' || form.password.trim() === ''"
         class="mt-4"
-        >Sign Up</FormButton
+        >{{ $t("RegisterPage.signup") }}</FormButton
       >
 
       <small class="text-base text-center mt-4 text-font-secondary">
-        You allready have an account?
-        <RouterLink to="/auth/register" class="text-primary hover:underline">
-          Sign In
+        {{ $t("RegisterPage.allready") }}
+        <RouterLink to="/auth/login" class="text-primary hover:underline">
+          {{ $t("RegisterPage.signin") }}
         </RouterLink>
       </small>
     </CustomForm>

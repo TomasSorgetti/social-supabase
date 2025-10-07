@@ -42,10 +42,34 @@
   },
   "PostPage": {
     "title": "Empieza a escribir, cuéntanos un chiste o un bug",
-    "placeholder": "El bug perfecto: Se reproduce solo en el equipo de QA."
+    "placeholder": "El bug perfecto: Se reproduce solo en el equipo de QA.",
+    "send": "Enviar"
   },
-  "welcome": "Welcome to the app",
-  "greeting": "Hello, {name}!",
-  "language": "Language",
-  "switch_to": "Switch to {lang}"
+  "RegisterPage": {
+    "title": "Registrarse",
+    "content": "Te ayudaremos a empezar para que puedas verificar tu información personal y personalizar tu cuenta.",
+    "google": "Registarse con google",
+    "github": "Registarse con github",
+    "username": "Usuario:",
+    "email": "Email:",
+    "password": "Contraseña:",
+    "accept": "Aceptar",
+    "terms": "términos y condiciones",
+    "signup": "Registrarse",
+    "allready": "Allready have an account?",
+    "signin": "Sign In"
+  },
+  "LoginPage": {
+    "title": "Iniciar Sesión",
+    "content": "Te ayudaremos a empezar para que puedas verificar tu información personal y personalizar tu cuenta.",
+    "google": "Iniciar con Google",
+    "github": "Iniciar con GitHub",
+    "email": "Email:",
+    "password": "Contraseña:",
+    "rememberme": "Recordarme",
+    "forgot": "Olvidaste tu contraseña?",
+    "signin": "Iniciar Sesión",
+    "allready": "No tienes una cuenta todavía?",
+    "signup": "Registrarse"
+  }
 }
