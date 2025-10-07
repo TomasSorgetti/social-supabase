@@ -29,3 +29,40 @@ export async function updateUserProfile(data) {
 
   if (error) throw new Error(error.message);
 }
+export async function getUserProfileById(userId) {
+  const { data, error } = await supabase
+    .from("profile")
+    .select(
+      `
+      id,
+      username,
+      avatar,
+      tag,
+      posts (
+        id,
+        content,
+        created_at,
+        favorites (
+          id,
+          user_id
+        ),
+        comments ( id )
+      )
+    `
+    )
+    .eq("id", userId)
+    .single();
+
+  if (error) throw new Error(error.message);
+
+  const postsWithExtras = data.posts.map((post) => ({
+    ...post,
+    isFavorited: post.favorites.some((fav) => fav.user_id === userId),
+    favoritesCount: post.favorites.length,
+  }));
+
+  return {
+    ...data,
+    posts: postsWithExtras,
+  };
+}

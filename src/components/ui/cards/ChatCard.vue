@@ -38,9 +38,7 @@ export default {
     },
   },
   methods: {},
-  mounted() {
-    console.log(this.tag);
-  },
+  mounted() {},
 };
 </script>
 
@@ -73,8 +71,10 @@ export default {
           class="w-full h-full object-contain"
         />
       </div>
-      <div>
-        <h3 class="text-base">{{ username || email }}</h3>
+      <div class="flex flex-col">
+        <a :href="`/feed/${userId}`" class="text-base">
+          {{ username || email }}
+        </a>
         <span class="text-font-secondary text-xs uppercase">{{ tag }}</span>
       </div>
     </div>

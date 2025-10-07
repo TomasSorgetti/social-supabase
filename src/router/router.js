@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../pages/HomeView.vue";
 import PostView from "../pages/PostView.vue";
+import UserView from "../pages/UserView.vue";
 import LoginView from "../pages/auth/LoginView.vue";
 import RegisterView from "../pages/auth/RegisterView.vue";
 import ForgotPasswordView from "../pages/auth/ForgotPasswordView.vue";
@@ -40,6 +41,11 @@ const routes = [
   {
     path: "/feed",
     component: PostView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/feed/:userId",
+    component: UserView,
     meta: { requiresAuth: true },
   },
   {

@@ -15,7 +15,7 @@ export default {
     CreatePost,
     CommentsModal,
   },
-
+  
   data() {
     return {
       loading: false,
