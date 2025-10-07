@@ -74,7 +74,7 @@ export default {
       name="message"
       cols="30"
       rows="4"
-      placeholder="Your message..."
+      :placeholder="$t('PostPage.placeholder')"
       required
       class="w-full border border-border p-4 min-h-50 resize-none"
     ></textarea>

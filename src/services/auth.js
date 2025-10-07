@@ -1,5 +1,5 @@
 import { supabase } from "../lib/supabase";
-import { getProfile } from "./user";
+import { createUserProfile, getProfile } from "./user";
 
 let user = {
   id: null,
@@ -55,12 +55,14 @@ async function loadUserProfile(userId) {
   });
 }
 
-export async function signUpUser({ email, password }) {
+export async function signUpUser({ username, email, password }) {
   const { data, error } = await supabase.auth.signUp({ email, password });
 
   if (error) throw new Error(error.message);
 
-  setUser({ id: data.user.id, email: data.user.email });
+  await createUserProfile({ username, id: data.user.id });
+
+  setUser({ id: data.user.id, email: data.user.email, username });
 
   // localStorage.setItem("isLoggedIn", "true");
 
@@ -89,7 +91,14 @@ export async function signOutUser() {
 
   // localStorage.removeItem("isLoggedIn");
 
-  setUser({ id: null, email: null });
+  setUser({
+    id: null,
+    email: null,
+    profileId: null,
+    username: null,
+    tag: null,
+    avatar: null,
+  });
 }
 
 export function useAuthState(callback) {

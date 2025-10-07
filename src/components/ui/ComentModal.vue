@@ -44,6 +44,7 @@ export default {
       this.loading = false;
     },
 
+    // todo => add comment no cambia la cantidad de comentarios en tiempo real
     async addComment() {
       if (!this.newComment.trim()) return;
       if (!this.userId) {

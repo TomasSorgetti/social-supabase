@@ -40,6 +40,10 @@
       ]
     }
   },
+  "PostPage": {
+    "title": "Start posting, tell us a joke or a bug",
+    "placeholder": "The perfect bug: It only reproduces on the QA team."
+  },
   "welcome": "Welcome to the app",
   "greeting": "Hello, {name}!",
   "language": "Language",

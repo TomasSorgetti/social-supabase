@@ -65,7 +65,7 @@ export default {
 
 <template>
   <main class="container mx-auto max-w-5xl px-4 py-32">
-    <h1 class="text-3xl font-bold">Chat Page</h1>
+    <h1 class="text-3xl font-bold">{{ $t("PostPage.title") }}</h1>
 
     <CreatePost />
 

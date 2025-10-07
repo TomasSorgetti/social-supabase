@@ -40,6 +40,10 @@
       ]
     }
   },
+  "PostPage": {
+    "title": "Empieza a escribir, cuéntanos un chiste o un bug",
+    "placeholder": "El bug perfecto: Se reproduce solo en el equipo de QA."
+  },
   "welcome": "Welcome to the app",
   "greeting": "Hello, {name}!",
   "language": "Language",
