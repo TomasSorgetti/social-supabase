@@ -18,7 +18,7 @@ export default {
 
   data() {
     return {
-      // loadingPosts: false,
+      loading: false,
       posts: [],
 
       user: {
@@ -37,9 +37,11 @@ export default {
 
   async mounted() {
     unsubscribeFromAuthState = useAuthState(async (userState) => {
+      this.loading = true;
       this.user = userState;
       if (this.user?.id) {
         this.posts = await getPosts(this.user.id);
+        this.loading = false;
       }
     });
     unsubscribeFromPostState = usePostState((newPost) => {
@@ -71,7 +73,14 @@ export default {
       ref="postContainer"
       class="grid grid-cols-1 gap-4 mt-10 lg:grid-cols-3 lg:mt-20"
     >
-      <li v-for="post in posts" :key="post.id">
+      <li
+        v-for="n in 3"
+        :key="'skeleton-' + n"
+        v-if="loading"
+        class="col-span-1 bg-font-secondary/10 min-h-46 w-full animate-pulse"
+      ></li>
+
+      <li v-else v-for="post in posts" :key="post.id">
         <!-- todo => comments and favorites lenght -->
         <ChatCard
           :to="'chat/' + post.id"
