@@ -14,6 +14,8 @@ export default {
       CloseIcon,
       defaultAvatar,
       comments: [],
+      loading: false,
+      error: "",
       newComment: "",
     };
   },
@@ -21,15 +23,25 @@ export default {
     isOpen: {
       immediate: true,
       async handler(open) {
-        if (open) await this.fetchComments();
+        if (open) {
+          await this.fetchComments();
+        }
       },
     },
   },
   methods: {
     async fetchComments() {
+      this.loading = true;
       const { data, error } = await getComments(this.postId);
-      if (error) console.log(error);
+
+      if (error) {
+        this.error = error.message;
+        this.loading = false;
+        return;
+      }
+
       this.comments = data || [];
+      this.loading = false;
     },
 
     async addComment() {
@@ -88,7 +100,8 @@ export default {
       </form>
 
       <ul class="space-y-2 mt-16 max-h-96 overflow-y-auto">
-        <template v-if="comments.length > 0">
+        <li v-if="loading" class="text-center">Loading comments...</li>
+        <template v-else-if="comments.length > 0">
           <li
             v-for="comment in comments"
             :key="comment.id"

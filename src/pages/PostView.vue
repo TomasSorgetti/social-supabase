@@ -91,6 +91,7 @@ export default {
     </ul>
 
     <CommentsModal
+      :key="selectedPostId"
       v-if="selectedPostId"
       :postId="selectedPostId"
       :userId="user.id"

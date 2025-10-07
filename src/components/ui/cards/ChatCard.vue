@@ -69,7 +69,7 @@ export default {
           class="w-full h-full object-contain"
         />
       </div>
-      <h3>{{ username || email }}</h3>
+      <h3 class="uppercase">{{ username || email }}</h3>
     </div>
 
     <p class="text-font-secondary mt-2 flex-1 text-base lg:text-lg">
