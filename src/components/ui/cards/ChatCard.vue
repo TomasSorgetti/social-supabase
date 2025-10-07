@@ -16,6 +16,7 @@ export default {
     userId: { type: String, required: true },
     avatar: { type: String, default: null },
     username: { type: String, default: null },
+    tag: { type: String, default: null },
     email: { type: String, default: null },
     content: { type: String, default: null },
     date: { type: [String, Date], default: null },
@@ -37,6 +38,9 @@ export default {
     },
   },
   methods: {},
+  mounted() {
+    console.log(this.tag);
+  },
 };
 </script>
 
@@ -59,7 +63,7 @@ export default {
 
     <div class="flex items-center gap-4">
       <div
-        class="flex items-center rounded-full w-10 h-10 bg-border border border-font-secondary overflow-hidden"
+        class="flex items-center rounded-full w-14 h-14 bg-border border border-font-secondary overflow-hidden"
       >
         <img
           :src="avatar ? avatar : defaultAvatar"
@@ -69,10 +73,13 @@ export default {
           class="w-full h-full object-contain"
         />
       </div>
-      <h3 class="uppercase">{{ username || email }}</h3>
+      <div>
+        <h3 class="text-base">{{ username || email }}</h3>
+        <span class="text-font-secondary text-xs uppercase">{{ tag }}</span>
+      </div>
     </div>
 
-    <p class="text-font-secondary mt-2 flex-1 text-base lg:text-lg">
+    <p class="text-font-secondary mt-2 flex-1 text-sm lg:text-base">
       {{ content }}
     </p>
 

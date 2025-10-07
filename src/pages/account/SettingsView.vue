@@ -13,7 +13,7 @@ export default {
 </script>
 
 <template>
-  <main>
-    <h1>Settings Page</h1>
+  <main class="py-36 container mx-auto min-h-[67vh]">
+    <h1 class="text-5xl font-bold">Account Settings</h1>
   </main>
 </template>

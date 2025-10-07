@@ -39,6 +39,7 @@ export default {
     unsubscribeFromAuthState = useAuthState(async (userState) => {
       this.loading = true;
       this.user = userState;
+
       if (this.user?.id) {
         this.posts = await getPosts(this.user.id);
         this.loading = false;
@@ -86,6 +87,7 @@ export default {
           :to="'chat/' + post.id"
           :avatar="post.user.avatar"
           :username="post.user.username"
+          :tag="user.tag"
           :email="post.user.email"
           :content="post.content"
           :date="post.created_at"

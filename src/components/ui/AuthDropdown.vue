@@ -63,7 +63,7 @@ export default {
         class="w-7 h-7 rounded-full bg-gray-700"
       />
       <!-- {{ $t("Navbar.account") }} -->
-      {{ user?.username || user?.email || $t("Navbar.account") }}
+      {{ user?.username || $t("Navbar.account") }}
     </button>
 
     <ul
