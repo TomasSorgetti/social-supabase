@@ -38,7 +38,7 @@ const routes = [
 
   // private routes
   {
-    path: "/chat",
+    path: "/feed",
     component: PostView,
     meta: { requiresAuth: true },
   },

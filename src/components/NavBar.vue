@@ -56,7 +56,7 @@ export default {
           <NavLink to="/">Home</NavLink>
         </li>
         <li v-if="user.id !== null">
-          <NavLink to="/chat">Chat</NavLink>
+          <NavLink to="/feed">Feed</NavLink>
         </li>
         <li class="mx-4">
           <LangSwitcher />

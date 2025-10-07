@@ -3,6 +3,7 @@ import ChatCard from "../components/ui/cards/ChatCard.vue";
 import { getPosts, usePostState } from "../services/post";
 import { useAuthState } from "../services/auth";
 import CreatePost from "../components/sections/posts/CreatePost.vue";
+import CommentsModal from "../components/ui/ComentModal.vue";
 
 let unsubscribeFromAuthState = () => {};
 let unsubscribeFromPostState = () => {};
@@ -12,6 +13,7 @@ export default {
   components: {
     ChatCard,
     CreatePost,
+    CommentsModal,
   },
 
   data() {
@@ -27,6 +29,9 @@ export default {
         tag: null,
         avatar: null,
       },
+
+      isCommentsOpen: false,
+      selectedPostId: null,
     };
   },
 
@@ -45,6 +50,13 @@ export default {
   unmounted() {
     unsubscribeFromAuthState();
     unsubscribeFromPostState();
+  },
+
+  methods: {
+    handleOpenComments(postId) {
+      this.selectedPostId = postId;
+      this.isCommentsOpen = true;
+    },
   },
 };
 </script>
@@ -73,8 +85,17 @@ export default {
           :postId="post.id"
           :userId="user.id"
           :isFavorited="post.isFavorited"
+          @open-comments="handleOpenComments"
         />
       </li>
     </ul>
+
+    <CommentsModal
+      v-if="selectedPostId"
+      :postId="selectedPostId"
+      :userId="user.id"
+      :isOpen="isCommentsOpen"
+      @close="isCommentsOpen = false"
+    />
   </main>
 </template>

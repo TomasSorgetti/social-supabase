@@ -36,6 +36,7 @@ export default {
       return formatDate(this.date);
     },
   },
+  methods: {},
 };
 </script>
 
@@ -89,7 +90,10 @@ export default {
         </li>
 
         <li>
-          <button class="flex items-center gap-1 cursor-pointer">
+          <button
+            @click="$emit('open-comments', postId)"
+            class="flex items-center gap-1 cursor-pointer"
+          >
             <img :src="CommentIcon" alt="comment icon" />
             {{ comments }}
           </button>
